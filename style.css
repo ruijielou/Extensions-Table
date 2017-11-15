@@ -57,3 +57,13 @@
         height: 100%;
     }
 
+    #table-wrapper-box .table {
+        text-align: right;
+        white-space: nowrap;
+    }
+
+    .DTFC_LeftBodyLiner tbody tr td {
+        text-align: center;
+    }
+
+    #table-wrapper-box tr td:nth-child(2) {text-align: center;}

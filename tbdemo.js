@@ -48,11 +48,13 @@ define(["qlik", "jquery", "./dataTables", "./fixedColumns", "./iscroll", "css!./
                 dimensions: {
                     uses: "dimensions",
                     min: 1,
-                    max: 20
+                    max: 20,
+                    items:{"groupStandard":{"type":"items","label":"amGraph Settings","items":{"waterfallStart":{"type":"string","label":"列名","ref":"qDef.cellTitle","expression":"always","defaultValue":""}}}}
                 },
                 measures: {
                     uses: "measures",
-                    min: 0
+                    min: 0,
+                    items:{"groupStandard":{"type":"items","label":"amGraph Settings","items":{"waterfallStart":{"type":"string","label":"列名","ref":"qDef.cellTitle","expression":"always","defaultValue":""}}}}
                 },
                 sorting: {
                     uses: "sorting"
@@ -87,10 +89,14 @@ define(["qlik", "jquery", "./dataTables", "./fixedColumns", "./iscroll", "css!./
                 colcount = hypercube.qDimensionInfo.length + hypercube.qMeasureInfo.length;
             //render titles
             hypercube.qDimensionInfo.forEach(function(cell) {
-                html += '<th><div class="padding-th">' + cell.qFallbackTitle + '</div></th>';
+
+                //qDef.CellTitle
+                var _TitleValue =cell.cellTitle!=null&&cell.cellTitle!=""?cell.cellTitle:cell.qFallbackTitle
+                html += '<th><div class="padding-th">' + _TitleValue + '</div></th>';
             });
             hypercube.qMeasureInfo.forEach(function(cell) {
-                html += '<th><div class="padding-th">' + cell.qFallbackTitle + '</div></th>';
+                 var _TitleValue =cell.cellTitle!=null&&cell.cellTitle!=""?cell.cellTitle:cell.qFallbackTitle
+                html += '<th><div class="padding-th">' + _TitleValue + '</div></th>';
             });
             html += "</tr></thead><tbody></div>";
             //render data
