@@ -876,13 +876,13 @@ $.extend( FixedColumns.prototype , {
         wrapper.style.right = '';
       }
 
-      oGrid.left.body.style.height = iBodyHeight+"px";
+      oGrid.left.body.style.height = (iBodyHeight + 8)+"px";
       if ( oGrid.left.foot ) {
         oGrid.left.foot.style.top = (oOverflow.x ? oOverflow.bar : 0)+"px"; // shift footer for scrollbar
       }
 
       scrollbarAdjust( oGrid.left.liner, iLeftWidth );
-      oGrid.left.liner.style.height = iBodyHeight+"px";
+      oGrid.left.liner.style.height = (iBodyHeight + 8)+"px";
       // oGrid.left.liner.style.maxHeight = iBodyHeight+"px";
     }
 

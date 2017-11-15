@@ -49,19 +49,39 @@ define(["qlik", "jquery", "./dataTables", "./fixedColumns", "./iscroll", "css!./
                     uses: "dimensions",
                     min: 1,
                     max: 20,
-                    items:{"groupStandard":{"type":"items","label":"amGraph Settings","items":{"waterfallStart":{"type":"string","label":"列名","ref":"qDef.cellTitle","expression":"always","defaultValue":""}}}}
+                    items: { "groupStandard": { "type": "items", "label": "amGraph Settings", "items": { "waterfallStart": { "type": "string", "label": "列名", "ref": "qDef.cellTitle", "expression": "always", "defaultValue": "" } } } }
                 },
                 measures: {
                     uses: "measures",
                     min: 0,
-                    items:{"groupStandard":{"type":"items","label":"amGraph Settings","items":{"waterfallStart":{"type":"string","label":"列名","ref":"qDef.cellTitle","expression":"always","defaultValue":""}}}}
+                    items: { "groupStandard": { "type": "items", "label": "amGraph Settings", "items": { "waterfallStart": { "type": "string", "label": "列名", "ref": "qDef.cellTitle", "expression": "always", "defaultValue": "" } } } }
                 },
                 sorting: {
                     uses: "sorting"
                 },
                 settings: {
                     uses: "settings"
+                },
+                layout1: {
+                    type: "items",
+                    label: "固定列",
+                    items: {
+                    changeFixedCloumns: {
+                        type: "string",
+                        component: "dropdown",
+                        label: "选择左侧固定列数",
+                        ref: "fiexedCloumnsNmuber",
+                        options: [{
+                            value: "1",
+                            label: "1"
+                        }, {
+                            value: "2",
+                            label: "2"
+                        }],
+                        defaultValue: "1"
+                    }
                 }
+                },
             }
         },
         snapshot: {
@@ -69,15 +89,7 @@ define(["qlik", "jquery", "./dataTables", "./fixedColumns", "./iscroll", "css!./
         },
         paint: function($element, layout) {
 
-            // if($.fn.dataTable.tables({visible: true, api: false}).length != 0){
-
-            // var tableBlock= $.fn.dataTable.tables({visible: true, api: false});
-
-            //     $('#'+tableBlock[0].id).draw();
-
-            // }
-
-            // console.log(layout);
+            var fiexedCloumnsNmuber = layout.fiexedCloumnsNmuber;
 
             var id = 'table' + Math.ceil(Math.random() * 100000);
 
@@ -91,11 +103,11 @@ define(["qlik", "jquery", "./dataTables", "./fixedColumns", "./iscroll", "css!./
             hypercube.qDimensionInfo.forEach(function(cell) {
 
                 //qDef.CellTitle
-                var _TitleValue =cell.cellTitle!=null&&cell.cellTitle!=""?cell.cellTitle:cell.qFallbackTitle
+                var _TitleValue = cell.cellTitle != null && cell.cellTitle != "" ? cell.cellTitle : cell.qFallbackTitle
                 html += '<th><div class="padding-th">' + _TitleValue + '</div></th>';
             });
             hypercube.qMeasureInfo.forEach(function(cell) {
-                 var _TitleValue =cell.cellTitle!=null&&cell.cellTitle!=""?cell.cellTitle:cell.qFallbackTitle
+                var _TitleValue = cell.cellTitle != null && cell.cellTitle != "" ? cell.cellTitle : cell.qFallbackTitle
                 html += '<th><div class="padding-th">' + _TitleValue + '</div></th>';
             });
             html += "</tr></thead><tbody></div>";
@@ -119,14 +131,15 @@ define(["qlik", "jquery", "./dataTables", "./fixedColumns", "./iscroll", "css!./
                 function() {
                     // megre();
                 }).DataTable({
+                "bInfo" : false,
                 searching: false, //禁止搜索
                 ordering: false, //禁止排序
                 scrollY: (tableHeight - 50) + 'px',
-                scrollX: tableWidth + 'px',
+                scrollX: '100%',
                 responsive: true,
                 paging: false, //禁止分页
                 fixedColumns: { //需要第一列不滚动就设置1
-                    leftColumns: 1
+                    leftColumns: 3
                 },
                 "initComplete": function() {
 
@@ -134,7 +147,7 @@ define(["qlik", "jquery", "./dataTables", "./fixedColumns", "./iscroll", "css!./
                 "fnDrawCallback": function(oSettings) {
                     // megre();
                 },
-                "fnStateLoad": function (oSettings) {
+                "fnStateLoad": function(oSettings) {
                     // console.log('fnstatatatat')
                 }
 
@@ -143,7 +156,7 @@ define(["qlik", "jquery", "./dataTables", "./fixedColumns", "./iscroll", "css!./
             megre();
 
             function megre() {
-                $('.DTFC_LeftBodyLiner tr').each(function() {
+                /*$('.DTFC_LeftBodyLiner tr').each(function() {
                     var str1 = $(this).find('td').eq(0).html();
                     var str2 = $(this).find('td').eq(1).html();
                     if (str1 == str2) {
@@ -151,21 +164,47 @@ define(["qlik", "jquery", "./dataTables", "./fixedColumns", "./iscroll", "css!./
                         $(this).find('td').eq(0).addClass('text-center');
                         $(this).find('td').eq(1).remove();
                     }
-                });
+                });*/
                 $('.DTFC_LeftBodyLiner tr').each(function(index, ele) {
-                    var str1 = $(this).find('td').html();
+                    var str1 = $(this).find('td[data-dt-column="0"]').html();
                     var that = this;
                     var i = 1;
                     $('.DTFC_LeftBodyLiner tr').each(function(innerIdex, innerEle) {
-                        var innerStr = $(this).find('td').html();
+                        var innerStr = $(this).find('td[data-dt-column="0"]').html();
                         if (index !== innerIdex && str1 == innerStr) {
-                            $(this).find('td').remove();
+
+                            $(this).find('td[data-dt-column="0"]').remove();
                             i++
-                            $(that).find('td').attr('rowspan', i)
+                            $(that).find('td[data-dt-column="0"]').attr('rowspan', i)
                         }
                     })
-                })
+                });
             }
+
+            // function megre() {
+            //     $('.DTFC_LeftBodyLiner tr').each(function() {
+            //         var str1 = $(this).find('td').eq(0).html();
+            //         var str2 = $(this).find('td').eq(1).html();
+            //         if (str1 == str2) {
+            //             $(this).find('td').eq(0).attr('colspan', '2');
+            //             $(this).find('td').eq(0).addClass('text-center');
+            //             $(this).find('td').eq(1).remove();
+            //         }
+            //     });
+            //     $('.DTFC_LeftBodyLiner tr').each(function(index, ele) {
+            //         var str1 = $(this).find('td').html();
+            //         var that = this;
+            //         var i = 1;
+            //         $('.DTFC_LeftBodyLiner tr').each(function(innerIdex, innerEle) {
+            //             var innerStr = $(this).find('td').html();
+            //             if (index !== innerIdex && str1 == innerStr) {
+            //                 $(this).find('td').remove();
+            //                 i++
+            //                 $(that).find('td').attr('rowspan', i)
+            //             }
+            //         })
+            //     })
+            // }
             return qlik.Promise.resolve();
         }
     };
