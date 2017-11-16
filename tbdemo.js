@@ -117,29 +117,23 @@ define(["qlik", "jquery", "./dataTables", "./fixedColumns", "./iscroll", "css!./
 
             $element.html(html);
 
-
             var ele = $element.find("#table-wrapper-box");
             var tableHeight = $('#table-wrapper-box').height();
             var tableWidth = $('#table-wrapper-box').width();
-
-            // $.extend($.fn.dataTable.defaults, {
-            //     searching: false, //禁止搜索
-            //     ordering: false //禁止排序
-            // });
 
             tablsInit = ele.find('#' + id).on('order.dt',
                 function() {
                     // megre();
                 }).DataTable({
-                "bInfo" : false,
+                bInfo : false,
                 searching: false, //禁止搜索
                 ordering: false, //禁止排序
                 scrollY: (tableHeight - 50) + 'px',
                 scrollX: '100%',
                 responsive: true,
                 paging: false, //禁止分页
-                fixedColumns: { //需要第一列不滚动就设置1
-                    leftColumns: 3
+                fixedColumns: { //设置固定列数
+                    leftColumns: fiexedCloumnsNmuber
                 },
                 "initComplete": function() {
 
