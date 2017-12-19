@@ -1,0 +1,119 @@
+#table-wrapper-box {
+    width: 100%;
+    height: 100%;
+}
+
+#table-wrapper-box * {
+    box-sizing: border-box;
+}
+
+#table-wrapper-box .table {
+    margin-bottom: 0;
+}
+
+.dataTables_scrollBody table {
+    border-bottom: 1px solid #ddd;
+}
+
+#table-wrapper-box table tr {
+    background-color: #fff;
+}
+
+.DTFC_LeftBodyLiner td {
+    background-color: rgb(52, 90, 167);
+    color: #fff;
+}
+
+#table-wrapper-box .table tr.gradeX th {
+    background-color: rgb(52, 90, 167);
+    color: #fff;
+}
+
+
+#table-wrapper-box tr td[rowspan] {
+    vertical-align: middle !important;
+}
+
+#table-wrapper-box .myTable_wrapper {
+    height: 100%;
+}
+
+#table-wrapper-box .table {
+    text-align: right;
+}
+
+#table-wrapper-box .DTFC_LeftBodyLiner tbody tr td {
+    text-align: center;
+}
+
+.DTFC_LeftWrapper .DTFC_LeftHeadWrapper tbody tr th {
+    text-align: center;
+}
+
+#table-wrapper-box tr td:nth-child(1) {background-color: rgb(52, 90, 167);}
+
+.DTFC_LeftBodyLiner .table {
+    border-top: 0;
+}
+
+.DTFC_LeftHeadWrapper .table {
+    border-bottom: 0;
+}
+
+
+.table {
+    font-size: 10px;
+}
+
+.qvplaceholder,
+.qvobject {
+    margin: 0;
+    width: 100%;
+    min-width: initial;
+}
+
+.dataTables_wrapper {
+    height: 100%;
+}
+
+.dataTables_info {
+    display: none;
+}
+
+th {
+    white-space: nowrap;
+}
+
+.DTFC_ScrollWrapper .dataTables_scroll .dataTables_scrollHead .dataTables_scrollHeadInner .table tr th {
+    text-align: right;
+}
+
+#table-wrapper-box .table tr td {
+    padding: 4px !important;
+}
+
+.padding-th {
+    padding: 0 10px;
+    text-align: center;
+}
+
+.DTFC_ScrollWrapper .DTFC_LeftWrapper .DTFC_LeftHeadWrapper table tr th {
+    text-align: center;
+}
+
+.DTFC_ScrollWrapper .DTFC_LeftWrapper .DTFC_LeftHeadWrapper table tr th.padding-th {
+    padding: 0;
+}
+
+
+.table tr td{
+    color: #000000;
+}
+
+.DTFC_Cloned tr td{
+    color: #fff;
+}
+
+/*.DTFC_ScrollWrapper .dataTables_scroll .dataTables_scrollBody thead>tr>th {padding: 0 !important;}
+.DTFC_LeftBodyWrapper .DTFC_LeftBodyLiner thead>tr>th {padding: 0 !important;}
+*/
