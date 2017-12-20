@@ -7,7 +7,7 @@ define([], function() {
             return true;
         }
         
-        var columnWidth ={
+        var addScreen ={
             type: "array",
             ref: "SgmTableStyle",
             label: "List Items",
@@ -15,7 +15,7 @@ define([], function() {
             allowAdd: true,
             allowRemove: true,
             label: "第几列",
-            addTranslation: "Add Item",
+            addTranslation: "添加筛选行配置",
             items: {
                 string: {
                     label:"指定类型",
@@ -48,7 +48,7 @@ define([], function() {
             type: "items",
             //component: "expandable-items",
             items: {
-                columnWidth:columnWidth
+                addScreen:addScreen
             }
         };
     });
