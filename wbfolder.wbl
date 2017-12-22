@@ -1,3 +1,9 @@
 Sgm_Custom_Tab001.js;
+addScreen.js;
 Sgm_Custom_Tab001.qext;
-style.css
+style.css;
+./lib/bootstrap.css;
+./lib/dataTables.js;
+./lib/fixedTable.css;
+./lib/iscroll.js;
+./lib/fixedColumns.js

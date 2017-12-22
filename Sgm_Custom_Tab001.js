@@ -214,8 +214,8 @@ return {
             // parentList.find('td').css('background', color)
 
         var ele = $element.find("#table-wrapper-box");
-        var tableHeight = $('#table-wrapper-box').height();
-        var tableWidth = $('#table-wrapper-box').width();
+        var tableHeight = $element.find("#table-wrapper-box").height();
+        var tableWidth = $element.find("#table-wrapper-box").width();
 
         tablsInit = ele.find('#' + id).on('order.dt',
             function() {
@@ -255,12 +255,12 @@ return {
                     $(this).find('td').eq(1).remove();
                 }
             });*/
-            $('.DTFC_LeftBodyLiner td').css({ 'background': fixedLeftColor, "color": fixedLeftFontColor });
-            $('.DTFC_LeftBodyLiner tr').each(function(index, ele) {
+            ele.find('.DTFC_LeftBodyLiner td').css({ 'background': fixedLeftColor, "color": fixedLeftFontColor });
+            ele.find('.DTFC_LeftBodyLiner tr').each(function(index, ele) {
                 var str1 = $(this).find('td[data-dt-column="0"]').html();
                 var that = this;
                 var i = 1;
-                $('.DTFC_LeftBodyLiner tr').each(function(innerIdex, innerEle) {
+                ele.find('.DTFC_LeftBodyLiner tr').each(function(innerIdex, innerEle) {
                     var innerStr = $(this).find('td[data-dt-column="0"]').html();
                     if (index !== innerIdex && str1 == innerStr) {
 
